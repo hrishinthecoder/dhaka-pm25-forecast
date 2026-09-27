@@ -1,0 +1,315 @@
+# =====================================================================
+# config.yaml  —  Dhaka PM2.5 Next-Day Forecasting
+# AUTHORITATIVE. Do NOT regenerate or overwrite this file (see CLAUDE.md).
+# Every parameter and decision the pipeline needs lives here.
+# Plain-language comments explain WHAT each setting does and WHY.
+# =====================================================================
+
+project:
+  name: dhaka_pm25_forecast
+  random_seed: 42            # one seed everywhere for reproducibility
+  description: >
+    Next-day daily-mean PM2.5 forecasting for a single Dhaka station,
+    using ERA5 reanalysis meteorology, calendar/activity proxies, and
+    NASA FIRMS fire signals. Temporal forecasting (Option A), not spatial.
+
+paths:
+  master_parquet: processed/dhaka_aq_master.parquet  # PREFERRED loader (dtypes preserved, faster)
+  master_csv: processed/dhaka_aq_master.csv          # identical content, fallback
+  raw_dir: raw                                       # per-source downloads (read-only)
+  raw_openaq_dir: raw/openaq                         # used for single-station verification
+  manifest: manifest.json                            # provenance record (actual location: project root, not raw/ — corrected in Phase 0)
+  processed_dir: processed                           # write derived tables here (distinct names; never overwrite the master)
+  artifacts_dir: artifacts                           # saved models + pipelines
+  reports_dir: reports
+  figures_dir: figures
+  memory_dir: .claude_memory
+
+# ---------------------------------------------------------------------
+# DATA & TIME HANDLING
+# ---------------------------------------------------------------------
+data:
+  datetime_utc_col: datetime_utc
+  datetime_local_col: datetime_local
+  local_timezone: Asia/Dhaka       # UTC+6; daily aggregation uses LOCAL day
+  ground_truth_col: openaq_pm25    # the ONLY prediction target (measured PM2.5)
+  expected_granularity: hourly
+  provenance_files: [data_dictionary.md, raw/manifest.json]   # read in Phase 0 for source + units of every column
+  verify_single_station: true        # Phase 0 MUST check raw/openaq location_id/sensor_id; STOP if multiple sensors were averaged
+  out_of_scope_sources: [cams_eac4, gee]  # present in raw/ but NOT merged into master; do not ingest without unit conversion (cams_eac4 = kg/kg; gee = Sentinel-5P mol/m^2 + MAIAC AOD)
+  physical_bounds:                 # hard sanity removal before anything else
+    pm25_min: 0.0
+    pm25_max: 1000.0               # Dhaka can legitimately hit very high values
+
+# ---------------------------------------------------------------------
+# TARGET CONSTRUCTION  (Option A: next-day daily mean)
+# ---------------------------------------------------------------------
+target:
+  # --- SINGLE-STATION TARGET (Phase-0 decision, 2026-06-10) ---------------
+  # Phase 0 proved the master's pooled `openaq_pm25` is an hourly MEAN over ~14
+  # OpenAQ sites spanning ~17 km — NOT a single station. Decision: take the target
+  # from ONE raw sensor instead, preserving an honest single-point framing.
+  source: raw_sensor                    # target comes from ONE raw OpenAQ sensor, not the pooled master column
+  sensor_file: raw/openaq/sensor_24434_pm25.parquet
+  sensor_id: 24434
+  station_label: "US diplomatic-post reference monitor, Dhaka (~2 km from centre)"
+  # The master's pooled openaq_pm25 is NOT the target; retain it only as a city-mean reference for comparison.
+  type: regression                 # primary task
+  horizon: next_day                # predict day t+1 from data through day t
+  aggregation: daily_mean          # 24-h mean of the single-sensor pm25 series
+  aggregate_on: local_day          # group by Asia/Dhaka calendar day
+  min_hours_per_day: 18            # a day counts only with >=18 valid hours
+  name: pm25_next_day_daily_mean
+  # Secondary task: classify the predicted daily mean into an AQI band.
+  classification_enabled: true
+
+# ---------------------------------------------------------------------
+# TRAIN / TEST SPLIT  (walk-forward CV for tuning + one untouched hold-out)
+# ---------------------------------------------------------------------
+split:
+  train_start: "2016-01-01"        # effectively first valid day (2016-03-11)
+  train_end: null                  # null = use all available data
+  final_holdout_months: 12         # most recent 12 months: evaluated ONCE, never tuned on
+  final_holdout_anchor: last_available   # anchor the 12-mo holdout to the sensor's LAST qualifying day (2025-03-24), NOT wall-clock now (sensor 24434 went offline; ~2024-03-25 to 2025-03-24)
+  walk_forward:
+    n_splits: 5                    # expanding-window folds on the pre-holdout data
+    gap_days: 1                    # 1-day gap between train and test (target is t+1)
+    scheme: expanding              # train window grows; test always strictly later in time
+
+# ---------------------------------------------------------------------
+# PREPROCESSING  (all learned steps fit on TRAIN FOLD ONLY — no leakage)
+# ---------------------------------------------------------------------
+preprocessing:
+  firms_frp_sum_fill: 0            # firms_frp_sum is 98.69% missing; impute 0 where firms_count==0 (no fire ⇒ no radiative power). Keep the feature.
+  imputation:
+    method: time_interpolation     # gap-limited linear interpolation for features
+    max_gap_hours: 3               # gaps longer than this stay NaN (handled in-fold)
+    add_missingness_flags: true    # one binary *_was_missing column per imputed feature
+    # NOTE: NEVER use KNNImputer / IterativeImputer across the full series (leaks across time).
+    #       NEVER impute future values of the target.
+  outliers:
+    rule_based: true               # drop physically impossible / stuck-constant PM2.5
+    isolation_forest:
+      enabled: true
+      contamination: 0.01          # ~1% flagged as anomalies
+      fit_on_train_only: true      # MANDATORY — flags passed as a feature, rows not deleted globally
+  scaling:
+    method: standard               # only matters for the deep model; trees don't need it
+    fit_on_train_only: true        # MANDATORY
+
+# ---------------------------------------------------------------------
+# FEATURES  (config-driven groups so ablations are a toggle, not a rewrite)
+# Temporal rule: every feature must be knowable on day t (never uses t+1).
+# ---------------------------------------------------------------------
+features:
+  # ---- CORE (default model): the maximally defensible set ----
+  core_groups: [era5_meteorology, calendar_cyclical, pm25_lags, pm25_rolling, fire]
+
+  era5_meteorology:               # ERA5 reanalysis — the primary, most-complete met source
+    - era5_temperature_2m
+    - era5_relative_humidity_2m
+    - era5_dew_point_2m
+    - era5_wind_speed_10m
+    - era5_wind_gusts_10m
+    - era5_wind_direction_10m
+    - era5_surface_pressure
+    - era5_precipitation
+    - era5_cloud_cover
+    - era5_boundary_layer_height          # mixing height — physically key for PM2.5
+    - era5_shortwave_radiation
+    - era5_vapour_pressure_deficit
+
+  calendar_cyclical:              # sine/cosine encodings + flags (built in code)
+    cyclical: [hour_of_day, day_of_week, month, day_of_year]
+    flags: [is_weekend, is_public_holiday]   # Bangladesh holidays via `holidays` package
+    holiday_country: BD
+
+  pm25_lags:                      # autoregressive history (lag-1 == persistence as a feature)
+    lag_days: [1, 2, 3, 7]
+
+  pm25_rolling:                   # trailing stats; windows EXCLUDE the target day (.shift(1))
+    windows_days: [3, 7, 14]
+    stats: [mean, std, min, max]
+
+  fire:                           # NASA FIRMS anthropogenic/biomass burning activity
+    - firms_count
+    - firms_frp_sum
+
+  # ---- ABLATION-ONLY groups (NOT in core; included only when an ablation enables them) ----
+  cams_chemistry:                 # CAMS model estimates of other pollutants (model output, not measured)
+    - omaq_carbon_monoxide
+    - omaq_nitrogen_dioxide
+    - omaq_sulphur_dioxide
+    - omaq_ozone
+  pm_adjacent_model_products:     # PM-adjacent model fields — most leakage-risky, caveat heavily
+    - omaq_dust
+    - omaq_aerosol_optical_depth
+    - acag_pm25
+  cams_pm25_benchmark:            # the near-circular feature — ablation ONLY, always caveated
+    - omaq_pm2_5
+
+  # ---- Always excluded ----
+  drop_always:
+    - omaq_ammonia                # 100% empty
+    - openaq_pm10                 # sparse + co-measured PM (leakage-adjacent)
+    - openaq_o3                   # sparse
+    - power_T2M                   # NASA POWER duplicates of ERA5 met (redundant; optional ablation)
+    - power_RH2M
+    - power_WS10M
+    - power_WD10M
+    - power_PS
+    - power_PRECTOTCORR
+    - power_ALLSKY_SFC_SW_DWN
+    - era5_rain                   # near-duplicate of era5_precipitation
+    - era5_et0_fao_evapotranspiration
+    - omaq_pm10
+    - omaq_uv_index
+
+# ---------------------------------------------------------------------
+# BASELINES  (built and evaluated FIRST — every model is scored relative to these)
+# ---------------------------------------------------------------------
+baselines:
+  persistence: true               # pred(t+1) = observed daily mean(t)
+  seasonal_climatology: true      # pred(t+1) = day-of-year mean from TRAIN data only
+  seasonal_naive_lag7: true       # pred(t+1) = value same day last week
+
+# ---------------------------------------------------------------------
+# METRICS  (reported as mean ± std across folds, plus skill vs baselines)
+# ---------------------------------------------------------------------
+evaluation:
+  regression_metrics: [rmse, mae, smape, r2]
+  skill_scores: [skill_vs_persistence, skill_vs_climatology]
+  classification_metrics: [accuracy, macro_f1, confusion_matrix]
+  diagnostics: [pred_vs_obs, residuals_over_time, residuals_vs_level, error_by_season]
+
+# ---------------------------------------------------------------------
+# PRIMARY MODELS  (Optuna = Bayesian/TPE; optimize on the walk-forward CV score)
+# ---------------------------------------------------------------------
+models:
+  lightgbm:
+    enabled: true
+    optuna:
+      n_trials: 50                # cheap at this N; raise to 100+ if you want a tighter search
+      direction: minimize         # minimize CV RMSE
+      timeout_seconds: null
+    search_space:
+      n_estimators: [200, 2000]
+      learning_rate: [0.01, 0.3]      # log scale
+      num_leaves: [15, 255]
+      max_depth: [3, 12]
+      min_child_samples: [5, 100]
+      subsample: [0.6, 1.0]
+      colsample_bytree: [0.6, 1.0]
+      reg_alpha: [0.001, 10.0]        # log scale (L1)
+      reg_lambda: [0.001, 10.0]       # log scale (L2)
+    early_stopping_rounds: 50
+
+  xgboost:
+    enabled: true
+    optuna:
+      n_trials: 50
+      direction: minimize
+    search_space:
+      n_estimators: [200, 2000]
+      learning_rate: [0.01, 0.3]      # log scale
+      max_depth: [3, 12]
+      min_child_weight: [1, 20]
+      subsample: [0.6, 1.0]
+      colsample_bytree: [0.6, 1.0]
+      gamma: [0.0, 5.0]
+      reg_alpha: [0.001, 10.0]        # log scale
+      reg_lambda: [0.001, 10.0]       # log scale
+    early_stopping_rounds: 50
+
+  random_forest:                  # secondary tree baseline — lightly configured, not heavily tuned
+    enabled: true
+    n_estimators: 500
+    max_depth: null
+    min_samples_leaf: 2
+    n_jobs: -1
+
+# ---------------------------------------------------------------------
+# DEEP COMPARISON MODEL  (Phase 6 — SECONDARY, expected to be outperformed)
+# Kept deliberately small + heavily regularized given N ≈ 2,355.
+# Report honestly even if it loses. Do NOT over-tune to manufacture a win.
+# ---------------------------------------------------------------------
+deep_model:
+  enabled: true
+  architecture: bilstm_attention   # Bi-LSTM + single multi-head attention layer
+  lookback_days: 30                # input sequence length
+  hidden_size: 64
+  num_layers: 1
+  attention_heads: 4
+  dropout: 0.3
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  batch_size: 32
+  max_epochs: 200
+  early_stopping_patience: 20      # on a time-ordered validation fold
+  n_seeds_for_reporting: 3         # report mean ± std over seeds (small models are seed-sensitive)
+  use_same_target_as_primary: true # daily next-day target → fair head-to-head with trees
+  # Full Temporal Fusion Transformer is OPTIONAL and secondary only; never the headline at this N.
+  tft_optional: false
+
+# ---------------------------------------------------------------------
+# ABLATIONS  (each runs through the identical walk-forward pipeline)
+# This is what makes the work publishable — show which signals carry the forecast.
+# ---------------------------------------------------------------------
+ablations:
+  enabled: true
+  experiments:
+    - name: met_only
+      groups: [era5_meteorology]
+    - name: met_calendar
+      groups: [era5_meteorology, calendar_cyclical]
+    - name: met_calendar_lags
+      groups: [era5_meteorology, calendar_cyclical, pm25_lags, pm25_rolling]
+    - name: core            # the default model
+      groups: [era5_meteorology, calendar_cyclical, pm25_lags, pm25_rolling, fire]
+    - name: core_plus_chemistry
+      groups: [era5_meteorology, calendar_cyclical, pm25_lags, pm25_rolling, fire, cams_chemistry]
+    - name: core_plus_satellite_anchor
+      groups: [era5_meteorology, calendar_cyclical, pm25_lags, pm25_rolling, fire, pm_adjacent_model_products]
+    - name: core_plus_cams_pm25_CAVEATED   # near-circular — for disclosure/discussion only
+      groups: [era5_meteorology, calendar_cyclical, pm25_lags, pm25_rolling, fire, cams_pm25_benchmark]
+
+# ---------------------------------------------------------------------
+# AQI CLASSIFICATION  (US EPA 2024 PM2.5 breakpoints, 24-h µg/m^3)
+# Verified against EPA "Final Updates to the AQI for Particulate Matter" (eff. May 6, 2024).
+# Swap to Bangladesh DoE breakpoints here if the collaborators require it.
+# ---------------------------------------------------------------------
+aqi:
+  convention: us_epa_2024
+  # [pm25_low, pm25_high, aqi_low, aqi_high, category]
+  breakpoints:
+    - [0.0,   9.0,   0,   50,  "Good"]
+    - [9.1,   35.4,  51,  100, "Moderate"]
+    - [35.5,  55.4,  101, 150, "Unhealthy for Sensitive Groups"]
+    - [55.5,  125.4, 151, 200, "Unhealthy"]
+    - [125.5, 225.4, 201, 300, "Very Unhealthy"]
+    - [225.5, 1000.0, 301, 500, "Hazardous"]   # 2024 rule merged the two Hazardous ranges into one (225.5+)
+
+# ---------------------------------------------------------------------
+# EXPLAINABILITY
+# ---------------------------------------------------------------------
+explainability:
+  shap:
+    enabled: true
+    model: best_tree            # TreeExplainer on the best LightGBM/XGBoost model
+    plots: [beeswarm, bar, dependence]
+    local_examples: 5
+
+# ---------------------------------------------------------------------
+# TRACKING  (optional, lightweight — NOT ZenML, NOT a database)
+# ---------------------------------------------------------------------
+tracking:
+  mlflow:
+    enabled: false              # set true if you want experiment tracking; not required
+    experiment_name: dhaka_pm25_forecast
+
+# ---------------------------------------------------------------------
+# FRONTEND  (local proof-of-concept only — do NOT deploy publicly)
+# ---------------------------------------------------------------------
+app:
+  framework: streamlit
+  scope: local_proof_of_concept

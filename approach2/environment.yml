@@ -1,0 +1,25 @@
+name: dhaka-pm25
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pandas
+  - numpy
+  - pyarrow
+  - scikit-learn
+  - xgboost
+  - lightgbm
+  - requests
+  - python-dotenv
+  - tqdm
+  - pyyaml
+  - matplotlib
+  - seaborn
+  - shap
+  - streamlit
+  - jupyter
+  - pytest
+  - pip
+  - pip:
+      - openaq            # OpenAQ v3 python client (optional; raw requests also work)
+      # - earthengine-api # uncomment ONLY if using the GEE satellite-AOD path

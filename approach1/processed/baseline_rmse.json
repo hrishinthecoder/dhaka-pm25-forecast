@@ -1,0 +1,11 @@
+{
+ "cv": {
+  "persistence": 33.11721326146255,
+  "climatology": 44.45267538329955
+ },
+ "holdout": {
+  "persistence": 35.576464867001455,
+  "climatology": 36.7753528656787,
+  "seasonal_naive_lag7": 44.12685681854563
+ }
+}

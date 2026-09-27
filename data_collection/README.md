@@ -1,0 +1,1 @@
+Raw source pulls (ACAG NetCDF, FIRMS, CAMS, master CSVs) are excluded for size; every source and pull is enumerated in manifest.json and the notebook. All providers are open (OpenAQ, Open-Meteo/CDS, NASA FIRMS, ACAG).

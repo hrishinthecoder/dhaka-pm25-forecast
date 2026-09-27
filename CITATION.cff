@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+title: "Next-day PM2.5 forecasting in Dhaka from a single reference-grade monitor (v2.0-single-station)"
+authors:
+  - family-names: Debnath
+    given-names: Hrishin
+version: v2.0-single-station
+date-released: "2026-06-21"
+repository-code: "https://github.com/hrishinthecoder/dhaka-pm25-forecast"
+message: "If you use this code or the frozen artifacts, please cite the accompanying manuscript (under review, Air Quality, Atmosphere & Health)."

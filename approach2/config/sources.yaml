@@ -1,0 +1,73 @@
+# Data-acquisition config. Secrets live in .env, NOT here.
+# Consumed by src/ingest/* (built via Claude Code Prompt 1).
+
+project:
+  city: Dhaka
+  country: BD
+  lat: 23.8103          # reference centroid; used for FIRMS radius + point sampling
+  lon: 90.4125
+  timezone: Asia/Dhaka
+
+date_range:
+  start: "2016-01-01"   # first year with valid OpenAQ PM2.5 in Dhaka
+  end:   "2026-01-01"   # exclusive upper bound; set to your actual pull date
+
+paths:
+  raw:       data/raw
+  interim:   data/interim
+  processed: data/processed
+  reference: data/reference/dhaka_aq_master.csv   # <-- VALIDATE the rebuild against THIS
+
+openaq:
+  # Station discovery is AUTOMATIC — no manual IDs required.
+  # On first run, src/ingest/discover_stations.py queries
+  #   GET https://api.openaq.org/v3/locations?coordinates=23.8103,90.4125&radius=25000&limit=100
+  # with OPENAQ_API_KEY from .env, keeps stations reporting pm25, and writes the
+  # resolved list to config/stations_resolved.yaml (committed for reproducibility).
+  discovery:
+    mode: auto                 # auto-discover all stations in radius (multi-station ready)
+    radius_m: 25000
+    require_parameter: pm25
+    min_history_years: 2       # skip stations with trivially short records
+  location_ids: []             # leave empty in auto mode; or pin explicit ids to override
+  parameters:                  # ground-truth target + covariates (fetch what each station reports)
+    - pm25                     # TARGET source
+    - pm10
+    - o3
+    - co                       # combustion tracer covariate (NOT CO2 — no CO2 exists here)
+    - no2
+    - so2
+  aggregation: hourly
+
+open_meteo:                 # ERA5 REANALYSIS — disclose as reanalysis, never as "station obs"
+  archive_endpoint: "https://archive-api.open-meteo.com/v1/archive"
+  hourly:                   # the ten variables confirmed to come through in your data
+    - temperature_2m
+    - relative_humidity_2m
+    - dew_point_2m
+    - surface_pressure
+    - precipitation
+    - cloud_cover
+    - wind_speed_10m
+    - wind_direction_10m
+    - shortwave_radiation
+    - boundary_layer_height
+  timezone: UTC             # store UTC; derive Asia/Dhaka local downstream
+
+firms:                      # NASA FIRMS active fire / FRP — biomass-burning proxy
+  # key from .env (FIRMS_MAP_KEY)
+  source: "VIIRS_SNPP_NRT"  # use an archive product for older (pre-NRT) years
+  radius_km: 100            # circle around project.lat / project.lon
+  # NRT API caps each request at ~10 days — the ingest module must page by date window.
+
+satellite_anchors:          # OPTIONAL. Coarse references, NOT hourly predictors.
+  acag:
+    enabled: false          # ~0.15 corr w/ hourly truth (static annual grid) — anchor only, never a feature
+  cams_eac4:
+    enabled: false
+  merra2:
+    enabled: false
+  # Sentinel-5P / MODIS MAIAC AOD via Google Earth Engine: enable only after `earthengine authenticate`.
+
+drop_columns:
+  - omaq_ammonia            # 100% empty in the master — drop before any pipeline runs
