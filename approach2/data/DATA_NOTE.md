@@ -1,0 +1,1 @@
+data/raw excluded for size (~89 MB of per-month API pulls). Re-pull with src/ingest/* after setting OPENAQ_API_KEY and FIRMS_MAP_KEY in .env (see .env.example). The frozen modelling input is data/processed/dhaka_aq_master_singlestation.parquet, SHA-256-pinned in models/final/SHA256SUMS.

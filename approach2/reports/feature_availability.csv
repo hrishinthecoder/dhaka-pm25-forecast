@@ -1,0 +1,46 @@
+feature,available_by,source
+pm25_t,day t (24-h mean),OpenAQ ground PM2.5
+pm25_lag1,day t-1,OpenAQ ground PM2.5 history
+pm25_lag2,day t-2,OpenAQ ground PM2.5 history
+pm25_lag3,day t-3,OpenAQ ground PM2.5 history
+pm25_lag7,day t-7,OpenAQ ground PM2.5 history
+pm25_roll_mean3,day t (window ends at t),OpenAQ ground PM2.5 history
+pm25_roll_std3,day t (window ends at t),OpenAQ ground PM2.5 history
+pm25_roll_mean7,day t (window ends at t),OpenAQ ground PM2.5 history
+pm25_roll_std7,day t (window ends at t),OpenAQ ground PM2.5 history
+era5_temperature_2m_mean,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_temperature_2m_min,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_temperature_2m_max,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_relative_humidity_2m_mean,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_relative_humidity_2m_min,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_relative_humidity_2m_max,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_dew_point_2m_mean,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_dew_point_2m_min,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_dew_point_2m_max,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_surface_pressure_mean,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_surface_pressure_min,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_surface_pressure_max,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_cloud_cover_mean,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_cloud_cover_min,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_cloud_cover_max,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_wind_speed_10m_mean,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_wind_speed_10m_min,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_wind_speed_10m_max,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_boundary_layer_height_mean,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_boundary_layer_height_min,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_boundary_layer_height_max,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_precipitation_sum,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+era5_shortwave_radiation_sum,day t,ERA5 reanalysis (Open-Meteo) — proxy for NWP forecast
+wind_u_mean,day t,ERA5 reanalysis wind vector
+wind_v_mean,day t,ERA5 reanalysis wind vector
+day_of_week,deterministic (known ahead),calendar
+month,deterministic (known ahead),calendar
+is_weekend,deterministic (known ahead),calendar
+is_holiday,deterministic (known ahead),calendar
+is_ramadan,deterministic (known ahead),calendar
+firms_count_lag0,day t,NASA FIRMS fire activity
+firms_count_lag1,day t-1,NASA FIRMS fire activity
+firms_count_lag2,day t-2,NASA FIRMS fire activity
+firms_frp_sum_lag0,day t,NASA FIRMS fire activity
+firms_frp_sum_lag1,day t-1,NASA FIRMS fire activity
+firms_frp_sum_lag2,day t-2,NASA FIRMS fire activity

@@ -1,0 +1,66 @@
+# Modeling config. Working assumption: OPTION A (next-day daily-mean regression).
+# Consumed by src/{features,models,evaluate}/*.
+
+task:
+  framing: option_a_nextday_daily_mean   # flip to option_c_hourly_plus24h to change horizon
+  target: pm25
+  horizon: next_day
+  aggregate: daily_mean
+  secondary_classification:
+    enabled: true
+    type: aqi_category
+    aqi_convention: us_epa   # US EPA 2024 PM2.5 breakpoints
+
+# Single-station target (v2.0): the modeling target is one reference monitor, NOT a
+# cross-station pooled mean. The hourly openaq_pm25 column comes from OpenAQ sensor
+# 24434 only (see fusion/swap_target.py); src.ingest.merge documents the same rule.
+target:
+  source: single_sensor
+  sensor_id: 24434
+  station: "OpenAQ 24434 — US Diplomatic Post, Dhaka (~2 km from centre)"
+
+data:
+  input_path: data/processed/dhaka_aq_master_singlestation.parquet
+
+coverage:
+  min_hourly_obs_per_day: 18
+  require_both_days: true   # keep a (t -> t+1) pair ONLY if BOTH days clear the 18-hour threshold
+
+split:                     # TEMPORAL ONLY — never random shuffle
+  mode: anchored_holdout   # holdout = last `holdout_months` of AVAILABLE labeled pairs
+  holdout_months: 12       # sensor 24434 ends 2025-03; anchor to data, not calendar
+  # Legacy fixed-calendar split (used ONLY if mode != anchored_holdout):
+  train_end: "2023-12-31"
+  val_year: 2024
+  test_start: "2025-01-01"
+  cv: rolling_origin       # blocked / expanding-window time-series CV
+  fit_scalers_on: train_only
+
+features:
+  pm25_lags: [1, 2, 3, 7]          # day-t and earlier ONLY
+  pm25_rolling_windows: [3, 7]     # mean + std
+  met_aggregations: [mean, min, max]
+  firms_lags: [0, 1, 2]
+  calendar: [hour, day_of_week, month, is_weekend, is_holiday, is_ramadan]
+  leakage_guards:
+    no_tplus1_features: true
+    exclude_same_period_satellite_pm25: true   # omaq_pm2_5 / acag_pm25 not as predictors
+    exclude_acag_as_predictor: true
+
+models:
+  baselines: [persistence, climatology]   # the bar every ML model must beat
+  random_forest:   { n_estimators: 500, random_state: 42 }
+  xgboost:         { random_state: 42, tune: true }
+  lightgbm:        { random_state: 42, tune: true }
+  neural_net:      { enabled: false }     # optional reported comparison, not the headline
+
+evaluation:
+  regression_metrics: [rmse, mae, r2, bias]
+  by_season: true
+  classification_metrics: [accuracy, macro_f1, confusion_matrix]
+  interpretation: [shap_summary, shap_dependence, permutation_importance]
+
+artifacts:
+  models_dir: models
+  reports_dir: reports
+  random_seed: 42

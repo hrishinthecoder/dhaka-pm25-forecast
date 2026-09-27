@@ -1,0 +1,23 @@
+pandas
+numpy
+pyarrow
+scipy                    # Diebold-Mariano t-distribution (significance tests)
+scikit-learn
+xgboost
+lightgbm
+requests
+python-dotenv
+tqdm
+pyyaml
+holidays                 # Bangladesh national holidays (is_holiday); fallback if absent
+matplotlib
+seaborn
+shap
+streamlit                # proof-of-concept display app (app/streamlit_app.py)
+jupyter
+pytest
+openaq
+cdsapi                   # PATH A: native ERA5 BLH pull from Copernicus CDS (H1-2024 gap)
+xarray                   # read the CDS NetCDF response
+netCDF4                  # NetCDF backend for xarray
+# earthengine-api  # optional GEE satellite-AOD path

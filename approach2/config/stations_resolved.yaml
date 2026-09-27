@@ -1,0 +1,228 @@
+location_ids:
+- 22
+- 2445
+- 8415
+- 1285342
+- 3194367
+- 5105944
+- 6157905
+- 6219691
+- 6219798
+- 6234078
+- 6234363
+- 6236590
+- 6240023
+- 6240773
+- 6242079
+- 6242232
+- 6251395
+- 6271076
+- 6313504
+- 6314693
+- 6322838
+- 6322839
+stations:
+- id: 22
+  name: SPARTAN - Dhaka University
+  lat: 23.728
+  lon: 90.398
+  parameters:
+  - pm25
+- id: 2445
+  name: 'US Diplomatic Post: Dhaka'
+  lat: 23.797687
+  lon: 90.423698
+  parameters:
+  - pm25
+- id: 8415
+  name: Dhaka
+  lat: 23.796374
+  lon: 90.424614
+  parameters:
+  - o3
+  - pm25
+- id: 1285342
+  name: SPARTAN - Dhaka University
+  lat: 23.7284
+  lon: 90.3982
+  parameters:
+  - pm25
+- id: 3194367
+  name: Dept. of Public Health and Informatics, Jahangirnagar University
+  lat: 23.888280501941725
+  lon: 90.26536993068466
+  parameters:
+  - pm1
+  - pm10
+  - pm25
+  - relativehumidity
+  - temperature
+  - um003
+- id: 5105944
+  name: smart air bangladesh office
+  lat: 23.780810956001233
+  lon: 90.42464769681916
+  parameters:
+  - pm1
+  - pm25
+  - um003
+- id: 6157905
+  name: RAJUK Uttara Apartment Project, Sector - 18, Uttara
+  lat: 23.856237
+  lon: 90.356837
+  parameters:
+  - pm1
+  - pm25
+  - relativehumidity
+  - temperature
+  - um003
+- id: 6219691
+  name: Abdullahbag, North Badda
+  lat: 23.78935
+  lon: 90.43179
+  parameters:
+  - pm1
+  - pm25
+  - relativehumidity
+  - temperature
+  - um003
+- id: 6219798
+  name: 'Kalijung,Gazipur '
+  lat: 23.900352
+  lon: 90.539333
+  parameters:
+  - pm1
+  - pm25
+  - relativehumidity
+  - temperature
+  - um003
+- id: 6234078
+  name: Kaliganj | Gazipur | Smart Air Bangladesh
+  lat: 23.900343
+  lon: 90.539289
+  parameters:
+  - pm1
+  - pm25
+  - relativehumidity
+  - temperature
+  - um003
+- id: 6234363
+  name: Gulshan Society Lake Park | Dhaka | Smart Air Bangladesh
+  lat: 23.801435
+  lon: 90.410545
+  parameters:
+  - pm1
+  - pm25
+  - relativehumidity
+  - temperature
+  - um003
+- id: 6236590
+  name: Hazaribagh, Jigatola | Dhaka | Smart Air Bangladesh
+  lat: 23.740437369394463
+  lon: 90.37358367755498
+  parameters:
+  - pm1
+  - pm25
+  - relativehumidity
+  - temperature
+  - um003
+- id: 6240023
+  name: Dhanmondi, Road No. 7 | Dhaka l Smart Air Bangladesh
+  lat: 23.744966
+  lon: 90.383485
+  parameters:
+  - pm1
+  - pm25
+  - relativehumidity
+  - temperature
+  - um003
+- id: 6240773
+  name: North Badda, Abdullahbag | Dhaka l Smart Air Bangladesh
+  lat: 23.78930160418681
+  lon: 90.43181041772891
+  parameters:
+  - pm1
+  - pm25
+  - relativehumidity
+  - temperature
+  - um003
+- id: 6242079
+  name: Moghbazar; Bhodro Goli | Dhaka | Smart Air Bangladesh
+  lat: 23.751525098776487
+  lon: 90.40418346811546
+  parameters:
+  - pm1
+  - pm25
+  - relativehumidity
+  - temperature
+  - um003
+- id: 6242232
+  name: Baridhara, Park Road | Dhaka l Smart Air Bangladesh
+  lat: 23.8015
+  lon: 90.42206
+  parameters:
+  - pm1
+  - pm25
+  - relativehumidity
+  - temperature
+  - um003
+- id: 6251395
+  name: Mirpur, Shewrapara | Dhaka | Smart Air Bangladesh
+  lat: 23.787855
+  lon: 90.3728743
+  parameters:
+  - pm1
+  - pm25
+  - relativehumidity
+  - temperature
+  - um003
+- id: 6271076
+  name: Baridhara Lakeside
+  lat: 23.805806130405518
+  lon: 90.41580533677225
+  parameters:
+  - pm1
+  - pm25
+  - relativehumidity
+  - temperature
+  - um003
+- id: 6313504
+  name: Sensor No -01
+  lat: 23.780512
+  lon: 90.423122
+  parameters:
+  - pm1
+  - pm25
+  - relativehumidity
+  - temperature
+  - um003
+- id: 6314693
+  name: Monitor no -5
+  lat: 23.823305
+  lon: 90.440429
+  parameters:
+  - pm1
+  - pm25
+  - relativehumidity
+  - temperature
+  - um003
+- id: 6322838
+  name: Sensor No -03
+  lat: 23.785969
+  lon: 90.427902
+  parameters:
+  - pm1
+  - pm25
+  - relativehumidity
+  - temperature
+  - um003
+- id: 6322839
+  name: Sensor No -04
+  lat: 23.823305
+  lon: 90.440429
+  parameters:
+  - pm1
+  - pm25
+  - relativehumidity
+  - temperature
+  - um003
