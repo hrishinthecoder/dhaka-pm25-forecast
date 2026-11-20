@@ -1,3 +1,5 @@
+> Written before the revision of the manuscript. See the top-level README.md for the current framing and results.
+
 # Dhaka Next-Day PM2.5 Forecasting
 
 > **Single entry point.** If you did not build this project, read this file top to bottom —

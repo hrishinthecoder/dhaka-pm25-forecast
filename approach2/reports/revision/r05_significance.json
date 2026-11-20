@@ -1,0 +1,115 @@
+{
+  "dm_spec": "loss differential d_t = (yhat_model - y)^2 - (yhat_persistence - y)^2; H0: E[d]=0; variance = gamma_0 / n (h=1, no autocovariance terms); Harvey-Leybourne-Newbold factor sqrt((n-1)/n); reference distribution Student t with n-1 df; two-sided p reported in the submitted manuscript",
+  "loss_diff_acf": {
+    "lag1": -0.1753034262715394,
+    "lag2": -0.08840223314955101,
+    "lag3": 0.07453243590561302,
+    "lag7": 0.1780273644450253
+  },
+  "holdout_consecutive_day_steps": 214,
+  "holdout_steps_with_gap": 4,
+  "largest_gap_days": 124,
+  "xgboost": {
+    "nw_lag_0": {
+      "dm_stat": -2.3129743647599152,
+      "p_two_sided": 0.021656453703412345,
+      "p_one_sided_a_better": 0.010828226851706172,
+      "mean_loss_diff": -348.91139254629064,
+      "n": 219
+    },
+    "nw_lag_1": {
+      "dm_stat": -2.548212039319365,
+      "p_two_sided": 0.011515792224613594,
+      "p_one_sided_a_better": 0.005757896112306797,
+      "mean_loss_diff": -348.91139254629064,
+      "n": 219
+    },
+    "nw_lag_3": {
+      "dm_stat": -2.795851435088134,
+      "p_two_sided": 0.0056384618085316505,
+      "p_one_sided_a_better": 0.0028192309042658252,
+      "mean_loss_diff": -348.91139254629064,
+      "n": 219
+    },
+    "nw_lag_7": {
+      "dm_stat": -2.633721287800172,
+      "p_two_sided": 0.00905059042982881,
+      "p_one_sided_a_better": 0.004525295214914405,
+      "mean_loss_diff": -348.91139254629064,
+      "n": 219
+    },
+    "nw_lag_14": {
+      "dm_stat": -2.246959821968656,
+      "p_two_sided": 0.025644383310314874,
+      "p_one_sided_a_better": 0.012822191655157437,
+      "mean_loss_diff": -348.91139254629064,
+      "n": 219
+    }
+  },
+  "xgboost_abs_loss": {
+    "dm_stat": -1.5256160913964847,
+    "p_two_sided": 0.12855496394126803,
+    "p_one_sided_a_better": 0.06427748197063402,
+    "mean_loss_diff": -1.9266159144750963,
+    "n": 219
+  },
+  "holm_3_ml_models_frozen_p": {
+    "raw": {
+      "random_forest": 0.0343078322433434,
+      "xgboost": 0.0216564561299119,
+      "lightgbm": 0.0626013034999033
+    },
+    "holm": {
+      "xgboost": 0.0649693683897357,
+      "random_forest": 0.0686156644866868,
+      "lightgbm": 0.0686156644866868
+    }
+  },
+  "holm_3_ml_models_rerun_p": {
+    "raw": {
+      "random_forest": 0.03468597807120971,
+      "xgboost": 0.021656453703412345,
+      "lightgbm": 0.07413153994565683
+    },
+    "holm": {
+      "xgboost": 0.06496936111023703,
+      "random_forest": 0.06937195614241942,
+      "lightgbm": 0.07413153994565683
+    }
+  },
+  "holm_all_12_models_vs_persistence": {
+    "raw": {
+      "random_forest": 0.03468597807120971,
+      "xgboost": 0.021656453703412345,
+      "lightgbm": 0.07413153994565683,
+      "climatology_doy": 0.5528530994675174,
+      "ridge": 0.05151162970991932,
+      "lasso": 0.020817934883320476,
+      "elastic_net": 0.039350558483709074,
+      "ols_pm_lags": 0.03921566322428093,
+      "ar1": 0.21386595452123638,
+      "climatology_smoothed": 0.42564239776961166,
+      "anomaly_persistence": 0.812666533842685,
+      "arima201_log": 0.006191584171651951
+    },
+    "holm": {
+      "arima201_log": 0.07429901005982342,
+      "lasso": 0.22899728371652522,
+      "xgboost": 0.22899728371652522,
+      "random_forest": 0.3121738026408874,
+      "ols_pm_lags": 0.31372530579424746,
+      "elastic_net": 0.31372530579424746,
+      "ridge": 0.31372530579424746,
+      "lightgbm": 0.3706576997282841,
+      "ar1": 0.8554638180849455,
+      "climatology_smoothed": 1.0,
+      "climatology_doy": 1.0,
+      "anomaly_persistence": 1.0
+    }
+  },
+  "r2_definition": {
+    "r2_score_sklearn": 0.7951342622097783,
+    "squared_pearson": 0.7964074648919552,
+    "note": "all models scored with sklearn.metrics.r2_score = 1 - SSE/SST (src/evaluate/metrics.py)"
+  }
+}

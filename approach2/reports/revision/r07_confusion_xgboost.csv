@@ -1,0 +1,7 @@
+,pred_Good,pred_Moderate,pred_USG,pred_Unhealthy,pred_Very Unhealthy,pred_Hazardous
+obs_Good,0,0,0,0,0,0
+obs_Moderate,0,20,12,0,0,0
+obs_USG,0,10,31,10,0,0
+obs_Unhealthy,0,0,10,55,13,0
+obs_Very Unhealthy,0,0,0,6,34,5
+obs_Hazardous,0,0,0,0,9,4

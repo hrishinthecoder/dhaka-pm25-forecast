@@ -1,0 +1,78 @@
+{
+  "tuning": {
+    "xgboost": {
+      "best_params": {
+        "learning_rate": 0.03,
+        "max_depth": 3,
+        "n_estimators": 300
+      },
+      "cv_rmse": 31.142869810717826
+    },
+    "lightgbm": {
+      "best_params": {
+        "learning_rate": 0.03,
+        "n_estimators": 300,
+        "num_leaves": 31
+      },
+      "cv_rmse": 32.165975725563655
+    }
+  },
+  "linear": {
+    "ridge": {
+      "alpha": 31.622776601683793,
+      "cv_rmse": 30.579522153642294
+    },
+    "lasso": {
+      "alpha": 1.539926526059492,
+      "cv_rmse": 29.771560777935214,
+      "n_nonzero": 16,
+      "nonzero": [
+        "pm25_t",
+        "pm25_lag2",
+        "pm25_lag3",
+        "pm25_lag7",
+        "pm25_roll_mean3",
+        "era5_temperature_2m_min",
+        "era5_relative_humidity_2m_max",
+        "era5_dew_point_2m_mean",
+        "era5_dew_point_2m_max",
+        "era5_cloud_cover_mean",
+        "era5_wind_speed_10m_max",
+        "era5_boundary_layer_height_max",
+        "wind_u_mean",
+        "is_weekend",
+        "is_holiday",
+        "firms_frp_sum_lag1"
+      ]
+    },
+    "elastic_net": {
+      "alpha": 0.27384196342643613,
+      "l1_ratio": 0.8,
+      "cv_rmse": 30.36304131254451
+    },
+    "ols_pm_lags": {
+      "coef": {
+        "pm25_t": 0.5735583167408761,
+        "pm25_lag1": 0.0662542349702645,
+        "pm25_lag2": 0.11614881148556264,
+        "pm25_lag3": 0.07517037932517551,
+        "pm25_lag7": 0.12494009514511044
+      },
+      "intercept": 3.469617107929608
+    },
+    "ar1": {
+      "phi": 0.8808521421793193,
+      "intercept": 10.518883540126481
+    },
+    "arima201_log": {
+      "params": {
+        "intercept": 0.01812956288124068,
+        "ar.L1": 1.506447564118401,
+        "ar.L2": -0.5106677447211057,
+        "ma.L1": -0.8751282824636066,
+        "sigma2": 0.11577674669569771
+      },
+      "aic": 1224.9278231146475
+    }
+  }
+}

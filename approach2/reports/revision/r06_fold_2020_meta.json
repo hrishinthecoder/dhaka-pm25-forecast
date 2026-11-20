@@ -1,0 +1,19 @@
+{
+  "xgb_params": {
+    "learning_rate": 0.03,
+    "max_depth": 3,
+    "n_estimators": 300
+  },
+  "xgb_cv_rmse": 34.116098816028746,
+  "ridge_alpha": 562.341325190349,
+  "lasso_alpha": 8.659643233600654,
+  "test_year": 2020,
+  "train_first_day_t": "2016-11-16",
+  "train_last_day_t": "2019-09-21",
+  "n_train": 531,
+  "test_first_day_t": "2020-01-10",
+  "test_last_day_t": "2020-09-24",
+  "n_test": 198,
+  "n_test_in_holdout": 0,
+  "n_train_in_holdout": 0
+}

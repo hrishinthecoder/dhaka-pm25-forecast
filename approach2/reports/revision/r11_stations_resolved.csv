@@ -1,0 +1,23 @@
+location_id,name,parameters,has_pm25,km_from_centre
+22,SPARTAN - Dhaka University,pm25,True,9.3
+2445,US Diplomatic Post: Dhaka,pm25,True,1.8
+8415,Dhaka,"o3,pm25",True,2.0
+1285342,SPARTAN - Dhaka University,pm25,True,9.2
+3194367,"Dept. of Public Health and Informatics, Jahangirnagar University","pm1,pm10,pm25,relativehumidity,temperature,um003",True,17.3
+5105944,smart air bangladesh office,"pm1,pm25,um003",True,3.5
+6157905,"RAJUK Uttara Apartment Project, Sector - 18, Uttara","pm1,pm25,relativehumidity,temperature,um003",True,7.6
+6219691,"Abdullahbag, North Badda","pm1,pm25,relativehumidity,temperature,um003",True,3.0
+6219798,"Kalijung,Gazipur ","pm1,pm25,relativehumidity,temperature,um003",True,16.3
+6234078,Kaliganj | Gazipur | Smart Air Bangladesh,"pm1,pm25,relativehumidity,temperature,um003",True,16.3
+6234363,Gulshan Society Lake Park | Dhaka | Smart Air Bangladesh,"pm1,pm25,relativehumidity,temperature,um003",True,1.0
+6236590,"Hazaribagh, Jigatola | Dhaka | Smart Air Bangladesh","pm1,pm25,relativehumidity,temperature,um003",True,8.7
+6240023,"Dhanmondi, Road No. 7 | Dhaka l Smart Air Bangladesh","pm1,pm25,relativehumidity,temperature,um003",True,7.8
+6240773,"North Badda, Abdullahbag | Dhaka l Smart Air Bangladesh","pm1,pm25,relativehumidity,temperature,um003",True,3.1
+6242079,Moghbazar; Bhodro Goli | Dhaka | Smart Air Bangladesh,"pm1,pm25,relativehumidity,temperature,um003",True,6.6
+6242232,"Baridhara, Park Road | Dhaka l Smart Air Bangladesh","pm1,pm25,relativehumidity,temperature,um003",True,1.4
+6251395,"Mirpur, Shewrapara | Dhaka | Smart Air Bangladesh","pm1,pm25,relativehumidity,temperature,um003",True,4.7
+6271076,Baridhara Lakeside,"pm1,pm25,relativehumidity,temperature,um003",True,0.6
+6313504,Sensor No -01,"pm1,pm25,relativehumidity,temperature,um003",True,3.5
+6314693,Monitor no -5,"pm1,pm25,relativehumidity,temperature,um003",True,3.2
+6322838,Sensor No -03,"pm1,pm25,relativehumidity,temperature,um003",True,3.1
+6322839,Sensor No -04,"pm1,pm25,relativehumidity,temperature,um003",True,3.2

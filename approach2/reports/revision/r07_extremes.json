@@ -1,0 +1,15 @@
+{
+  "max_observed": 383.4166666666667,
+  "max_xgb_prediction": 254.4352,
+  "n_obs_gt_240": 11,
+  "n_obs_gt_240_underpredicted": 11,
+  "largest_miss": {
+    "date_t": "2025-01-21",
+    "observed": 383.4166666666667,
+    "xgb": 223.2915,
+    "persistence": 248.375
+  },
+  "share_of_sq_error_reduction_from_obs_gt_150": 0.6306925606642613,
+  "aqi_accuracy_xgb": 0.6575342465753424,
+  "aqi_accuracy_persistence": 0.6712328767123288
+}

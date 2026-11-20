@@ -1,0 +1,31 @@
+{
+  "pooled_hours": 62283,
+  "pooled_first": "2016-03-10 21:00:00+00:00",
+  "pooled_last": "2026-05-27 00:00:00+00:00",
+  "s24434_hours": 47656,
+  "s24434_first": "2016-11-09 17:00:00+00:00",
+  "s24434_last": "2025-03-24 12:00:00+00:00",
+  "pooled_hours_with_24434_reporting": 47656,
+  "pooled_equals_24434": 46629,
+  "pooled_differs_from_24434_while_24434_reports": 1027,
+  "pooled_hours_without_24434": 14627,
+  "pooled_hours_before_24434_first": 5518,
+  "pooled_hours_after_24434_last": 7794,
+  "pooled_hours_without_24434_inside_its_span": 1315,
+  "where_pooled_differs": {
+    "n": 1027,
+    "first": "2025-01-01 00:00:00+00:00",
+    "last": "2025-03-17 02:00:00+00:00",
+    "mean_pooled": 158.84417533197376,
+    "mean_24434": 150.18792599805258,
+    "ratio_of_means": 1.057636120056904,
+    "pearson_r": 0.9392001060828914
+  },
+  "pooled_valid_days_ge18h_after_24434_last_day": 312,
+  "stations_resolved_yaml": {
+    "n_locations": 22,
+    "n_locations_with_pm25": 22,
+    "km_min": 0.6,
+    "km_max": 17.3
+  }
+}

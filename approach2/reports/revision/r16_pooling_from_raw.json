@@ -1,0 +1,79 @@
+{
+  "locations_listed": 22,
+  "locations_in_sensor_table": 22,
+  "sensors_listed": 24,
+  "sensors_listed_by_parameter": {
+    "pm25": 22,
+    "o3": 1,
+    "pm10": 1
+  },
+  "data_files": 22,
+  "data_files_by_parameter": {
+    "pm25": 20,
+    "pm10": 1,
+    "o3": 1
+  },
+  "pm25_sensors_listed": 22,
+  "pm25_sensors_with_data_file": 20,
+  "pm25_sensors_with_at_least_one_value": 20,
+  "pm25_sensors_listed_without_data": [
+    41,
+    6566258
+  ],
+  "locations_with_pm25_data": 20,
+  "pm25_data_sensors_isMonitor_true": 2,
+  "pm25_data_sensors_isMonitor_false": 18,
+  "pm25_data_sensors_by_provider": {
+    "AirGradient": 18,
+    "StateAir Dhaka": 1,
+    "AirNow": 1
+  },
+  "pm25_data_sensors_by_instrument": {
+    "Unknown AirGradient Sensor": 17,
+    "Government Monitor": 2,
+    "AirGradient Open Air Generation 1 (O-1PST)": 1
+  },
+  "km_range_pm25_data_sensors": [
+    0.6,
+    17.3
+  ],
+  "km_range_all_locations": [
+    0.6,
+    17.3
+  ],
+  "pooled_hours": 62294,
+  "pooled_first": "2016-03-10 21:00:00+00:00",
+  "pooled_last": "2026-05-27 11:00:00+00:00",
+  "s24434_hours": 47656,
+  "s24434_first": "2016-11-09 17:00:00+00:00",
+  "s24434_last": "2025-03-24 12:00:00+00:00",
+  "pooled_hours_from_24434_alone": 46629,
+  "pooled_hours_with_two_or_more_sensors": 4782,
+  "max_sensors_in_one_hour": 12,
+  "hour_of_max_sensors": "2026-04-26 06:00:00+00:00",
+  "sensors_per_hour_distribution": {
+    "1": 57512,
+    "2": 2215,
+    "3": 10,
+    "4": 45,
+    "5": 78,
+    "6": 48,
+    "7": 55,
+    "8": 517,
+    "9": 1289,
+    "10": 438,
+    "11": 84,
+    "12": 3
+  },
+  "pooled_hours_including_24434": 47656,
+  "pooled_hours_before_24434_first": 5518,
+  "pooled_hours_after_24434_last": 7805,
+  "pooled_valid_days_ge18h_total": 2490,
+  "pooled_valid_days_ge18h_after_24434_last_day": 313,
+  "sensors_overlapping_24434": 1,
+  "repo_master_hours": 62283,
+  "hours_in_both": 62283,
+  "hours_only_in_rebuilt": 11,
+  "hours_only_in_master": 0,
+  "max_abs_diff_where_both": 0.0
+}

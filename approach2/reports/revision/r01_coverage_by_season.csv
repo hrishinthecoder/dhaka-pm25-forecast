@@ -1,0 +1,4 @@
+season,days,valid_days,pair_valid,model_rows,pct_days_not_valid
+monsoon,976,751,701,646,23.1
+transition,1270,683,616,545,46.2
+winter_dry,812,465,429,369,42.7

@@ -1,0 +1,68 @@
+{
+  "hours_masked": 43,
+  "original": {
+    "n_pairs": 1560,
+    "n_train": 1341,
+    "n_holdout": 219,
+    "xgboost": {
+      "rmse": 30.803927853235244,
+      "mae": 21.416136383580966,
+      "r2": 0.7951342608733247,
+      "bias": 1.0802853392048306,
+      "n": 219
+    },
+    "persistence": {
+      "rmse": 36.02489913300974,
+      "mae": 23.342752132359827,
+      "r2": 0.7198035124493297,
+      "bias": 0.5955891923424289,
+      "n": 219
+    },
+    "dm_vs_persistence": {
+      "dm_stat": -2.3129743214604486,
+      "p_two_sided": 0.021656456129911933,
+      "p_one_sided_a_better": 0.010828228064955966,
+      "mean_loss_diff": -348.91138635620416,
+      "n": 219
+    }
+  },
+  "masked": {
+    "n_pairs": 1558,
+    "n_train": 1339,
+    "n_holdout": 219,
+    "holdout_first": "2024-03-23",
+    "holdout_last": "2025-03-23",
+    "xgboost": {
+      "rmse": 29.894735627836244,
+      "mae": 20.569703327914116,
+      "r2": 0.8070492042194128,
+      "bias": 0.4904261997754507,
+      "n": 219
+    },
+    "persistence": {
+      "rmse": 36.02489913300974,
+      "mae": 23.342752132359827,
+      "r2": 0.7198035124493297,
+      "bias": 0.5955891923424289,
+      "n": 219
+    },
+    "dm_vs_persistence": {
+      "dm_stat": -2.639343681006228,
+      "p_two_sided": 0.008906491673997095,
+      "p_one_sided_a_better": 0.0044532458369985475,
+      "mean_loss_diff": -404.0981392853046,
+      "n": 219
+    }
+  },
+  "holdout_days_identical": true,
+  "holdout_targets_identical": true,
+  "holdout_features_identical": true,
+  "max_abs_holdout_pred_change": 17.858627319335938,
+  "mean_abs_holdout_pred_change": 3.728843927383423,
+  "daily_means_changed": 21,
+  "daily_mean_change_min_max": [
+    31.21920289855072,
+    151.8453947368421
+  ],
+  "days_newly_invalid": 1
+}

@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "Next-day PM2.5 forecasting in Dhaka from a single reference-grade monitor (v2.0-single-station)"
+title: "Next-day PM2.5 forecasting at a single reference-grade monitor in Dhaka: a provenance-audited benchmark (v2.0-single-station)"
 authors:
   - family-names: Debnath
     given-names: Hrishin

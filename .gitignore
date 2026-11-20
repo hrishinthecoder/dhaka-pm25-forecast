@@ -5,3 +5,12 @@ __pycache__/
 data/raw/
 logs/
 .pytest_cache/
+
+# Raw per-sensor OpenAQ downloads (not redistributed)
+approach1/raw/
+
+# Manuscript files (kept out of the code repository)
+revision_submission/
+AIRQ-D-26-01116.pdf
+Dhaka_PM25_AQAH_manuscript_v2.0_REBUILD.docx
+revision_submission/AUDIT_FINDINGS.md

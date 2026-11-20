@@ -1,0 +1,44 @@
+{
+  "n_local_days_checked": 3652,
+  "lag0_equals_max_of_utc_t_minus_1_and_utc_t": 3652,
+  "lag0_equals_utc_t_only": 2568,
+  "lag0_equals_utc_t_minus_1_only": 2570,
+  "note": "UTC date t = 06:00 local on day t to 05:59 local on day t+1",
+  "refits": {
+    "full_45": {
+      "rmse": 30.803927853235244,
+      "mae": 21.416136383580966,
+      "r2": 0.7951342608733247,
+      "bias": 1.0802853392048306,
+      "n": 219,
+      "dm_p_vs_persistence": 0.021656456129911933
+    },
+    "drop_firms_lag0 (43 features)": {
+      "rmse": 30.62415812299785,
+      "mae": 21.253622707218504,
+      "r2": 0.7975184499285588,
+      "bias": 1.1290278686689252,
+      "n": 219,
+      "dm_p_vs_persistence": 0.020991414789287417,
+      "dm_p_vs_full": 0.2858511226018292
+    },
+    "drop_all_firms (39 features)": {
+      "rmse": 29.90422424266367,
+      "mae": 20.719324748910665,
+      "r2": 0.8069266992834917,
+      "bias": 0.7917847319189608,
+      "n": 219,
+      "dm_p_vs_persistence": 0.007625302140685415,
+      "dm_p_vs_full": 0.014175564844146298
+    },
+    "drop_firms_and_era5 (14 features: PM history + calendar)": {
+      "rmse": 30.329888966287513,
+      "mae": 20.38608232797918,
+      "r2": 0.8013910658865373,
+      "bias": 0.33091956310798126,
+      "n": 219,
+      "dm_p_vs_persistence": 0.008409537975758214,
+      "dm_p_vs_full": 0.7235441227177533
+    }
+  }
+}

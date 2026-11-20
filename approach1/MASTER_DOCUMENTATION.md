@@ -1,3 +1,5 @@
+> Written before the revision of the manuscript. See the top-level README.md for the current framing and results.
+
 # MASTER DOCUMENTATION
 ## Dhaka Next-Day PM2.5 Forecasting System — explained from zero
 

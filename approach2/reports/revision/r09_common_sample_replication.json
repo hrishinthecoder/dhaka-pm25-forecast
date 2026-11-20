@@ -1,0 +1,67 @@
+{
+  "approach1_own_holdout": {
+    "n": 236,
+    "first": "2024-03-24",
+    "last": "2025-03-23",
+    "n_dev": 1509,
+    "lightgbm_rmse": 30.253239844785643,
+    "lightgbm_r2": 0.8092459557344016,
+    "persistence_rmse": 35.576464867001455,
+    "dm_vs_persistence": {
+      "dm_stat": -2.1338366635458503,
+      "p_two_sided": 0.033892078788968,
+      "p_one_sided_a_better": 0.016946039394484,
+      "mean_loss_diff": -350.42633132686314,
+      "n": 236
+    }
+  },
+  "n_common_days": 218,
+  "approach2_only_days": [
+    "2024-03-23"
+  ],
+  "approach1_only_days": 18,
+  "targets_identical_on_common_days": true,
+  "max_abs_target_diff": 5.684341886080802e-14,
+  "common": {
+    "persistence_rmse": 35.98307250893293,
+    "approach1_lightgbm_rmse": 30.375920637021586,
+    "approach1_lightgbm_r2": 0.8015799002039148,
+    "approach2_xgboost_rmse": 30.760015090688853,
+    "approach2_xgboost_r2": 0.7965302491909694,
+    "approach1_lightgbm_vs_persistence": {
+      "dm_stat": -2.113533596938676,
+      "p_two_sided": 0.035697252794243114,
+      "p_one_sided_a_better": 0.017848626397121557,
+      "mean_loss_diff": -372.0849526364905,
+      "n": 218
+    },
+    "approach2_xgboost_vs_persistence": {
+      "dm_stat": -2.300358268312481,
+      "p_two_sided": 0.022378039226982938,
+      "p_one_sided_a_better": 0.011189019613491469,
+      "mean_loss_diff": -348.60297880371854,
+      "n": 218
+    },
+    "approach1_lightgbm_vs_approach2_xgboost": {
+      "dm_stat": -0.3372589623748105,
+      "p_two_sided": 0.7362476755250758,
+      "p_one_sided_a_better": 0.3681238377625379,
+      "mean_loss_diff": -23.48197383277198,
+      "n": 218
+    },
+    "pred_correlation": 0.9918150968435664,
+    "mean_abs_pred_difference": 7.042174208343055
+  },
+  "approach1_extra_days": {
+    "n": 18,
+    "lightgbm_rmse": 28.72587112099427,
+    "persistence_rmse": 30.220721927056278
+  },
+  "daily_mean_max_abs_diff_a1_vs_a2": 0.0,
+  "n_days_daily_mean_differs": 0,
+  "approach1_features": {
+    "n": 51,
+    "note": "plus anomaly_flag (IsolationForest, fit on dev rows) appended inside the bundle",
+    "holdout_rows_flagged_anomalous": 7
+  }
+}

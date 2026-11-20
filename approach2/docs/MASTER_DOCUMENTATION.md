@@ -1,3 +1,5 @@
+> Written before the revision of the manuscript. See the top-level README.md for the current framing and results.
+
 # Dhaka Next-Day PM2.5 Forecasting — A Complete Beginner's Guide
 
 > **Read this first.** This guide explains the whole project from zero. You do

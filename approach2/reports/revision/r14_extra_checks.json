@@ -1,0 +1,97 @@
+{
+  "longest_gap_by_year": [
+    {
+      "year": 2016,
+      "last_valid": "2016-11-23",
+      "next_valid": "2016-11-26",
+      "missing_days": 2
+    },
+    {
+      "year": 2017,
+      "last_valid": "2017-10-13",
+      "next_valid": "2018-01-02",
+      "missing_days": 80
+    },
+    {
+      "year": 2018,
+      "last_valid": "2018-08-15",
+      "next_valid": "2018-11-02",
+      "missing_days": 78
+    },
+    {
+      "year": 2019,
+      "last_valid": "2019-09-22",
+      "next_valid": "2020-01-01",
+      "missing_days": 100
+    },
+    {
+      "year": 2020,
+      "last_valid": "2020-09-25",
+      "next_valid": "2021-01-01",
+      "missing_days": 97
+    },
+    {
+      "year": 2021,
+      "last_valid": "2021-10-06",
+      "next_valid": "2022-01-01",
+      "missing_days": 86
+    },
+    {
+      "year": 2022,
+      "last_valid": "2022-09-16",
+      "next_valid": "2023-01-01",
+      "missing_days": 106
+    },
+    {
+      "year": 2023,
+      "last_valid": "2023-10-29",
+      "next_valid": "2024-01-01",
+      "missing_days": 63
+    },
+    {
+      "year": 2024,
+      "last_valid": "2024-09-07",
+      "next_valid": "2025-01-02",
+      "missing_days": 116
+    },
+    {
+      "year": 2025,
+      "last_valid": "2025-01-02",
+      "next_valid": "2025-01-03",
+      "missing_days": 0
+    }
+  ],
+  "model_rows_by_month": {
+    "1": 163,
+    "2": 162,
+    "3": 187,
+    "4": 157,
+    "5": 141,
+    "6": 191,
+    "7": 158,
+    "8": 176,
+    "9": 121,
+    "10": 29,
+    "11": 31,
+    "12": 44
+  },
+  "macro_f1_6_labels_xgboost": 0.5027456434004185,
+  "macro_f1_5_present_xgboost": 0.6032947720805022,
+  "accuracy_xgboost": 0.6575342465753424,
+  "macro_f1_6_labels_persistence": 0.5313780691255938,
+  "macro_f1_5_present_persistence": 0.6376536829507126,
+  "accuracy_persistence": 0.6712328767123288,
+  "macro_f1_6_labels_lasso": 0.4935971685971687,
+  "macro_f1_5_present_lasso": 0.5923166023166024,
+  "accuracy_lasso": 0.6712328767123288,
+  "abs_r_pm25_t_with_era5_gt_0.7": {
+    "era5_temperature_2m_mean": 0.747,
+    "era5_temperature_2m_min": 0.825,
+    "era5_dew_point_2m_mean": 0.827,
+    "era5_dew_point_2m_min": 0.816,
+    "era5_dew_point_2m_max": 0.804,
+    "era5_surface_pressure_mean": 0.747,
+    "era5_surface_pressure_min": 0.753,
+    "era5_surface_pressure_max": 0.749
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "holdout": {
+    "n": 219,
+    "group_sum_mean_abs_shap": {
+      "calendar": 2.1689999103546143,
+      "era5": 43.36199951171875,
+      "firms": 1.1749999523162842,
+      "pm_history": 30.302000045776367
+    },
+    "group_share_pct": {
+      "calendar": 2.799999952316284,
+      "era5": 56.29999923706055,
+      "firms": 1.5,
+      "pm_history": 39.29999923706055
+    },
+    "top10": {
+      "era5_dew_point_2m_mean": 17.37299919128418,
+      "pm25_t": 10.64799976348877,
+      "pm25_roll_mean3": 8.847000122070312,
+      "pm25_roll_mean7": 5.125,
+      "era5_dew_point_2m_max": 4.868000030517578,
+      "era5_boundary_layer_height_max": 2.9690001010894775,
+      "pm25_lag7": 2.9030001163482666,
+      "era5_dew_point_2m_min": 2.319999933242798,
+      "era5_wind_speed_10m_max": 1.805999994277954,
+      "era5_boundary_layer_height_mean": 1.6859999895095825
+    },
+    "mean_abs_of_group_summed_shap": {
+      "calendar": 1.3980000019073486,
+      "era5": 29.323999404907227,
+      "firms": 0.6959999799728394,
+      "pm_history": 23.711000442504883
+    }
+  },
+  "train": {
+    "n": 1341,
+    "group_sum_mean_abs_shap": {
+      "calendar": 2.0250000953674316,
+      "era5": 41.25600051879883,
+      "firms": 1.253999948501587,
+      "pm_history": 31.59600067138672
+    },
+    "group_share_pct": {
+      "calendar": 2.700000047683716,
+      "era5": 54.20000076293945,
+      "firms": 1.600000023841858,
+      "pm_history": 41.5
+    },
+    "top10": {
+      "era5_dew_point_2m_mean": 18.117000579833984,
+      "pm25_t": 11.562000274658203,
+      "pm25_roll_mean3": 9.522000312805176,
+      "era5_dew_point_2m_max": 5.15500020980835,
+      "pm25_roll_mean7": 4.730999946594238,
+      "pm25_lag7": 3.1070001125335693,
+      "era5_dew_point_2m_min": 2.3350000381469727,
+      "era5_wind_speed_10m_max": 1.569000005722046,
+      "era5_boundary_layer_height_mean": 1.4950000047683716,
+      "era5_boundary_layer_height_max": 1.430999994277954
+    },
+    "mean_abs_of_group_summed_shap": {
+      "calendar": 1.2790000438690186,
+      "era5": 30.785999298095703,
+      "firms": 0.9070000052452087,
+      "pm_history": 25.913999557495117
+    }
+  },
+  "frozen_shap_importance_csv_top5": {
+    "era5_dew_point_2m_mean": 17.373,
+    "pm25_t": 10.648,
+    "pm25_roll_mean3": 8.847,
+    "pm25_roll_mean7": 5.125,
+    "era5_dew_point_2m_max": 4.868
+  }
+}

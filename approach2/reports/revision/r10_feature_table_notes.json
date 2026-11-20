@@ -1,0 +1,27 @@
+{
+  "firms_box_west_south_east_north": [
+    89.4278,
+    22.9094,
+    91.3972,
+    24.7112
+  ],
+  "firms_box_size_km": [
+    200.0,
+    200.0
+  ],
+  "group_counts": {
+    "era5": 25,
+    "pm_history": 9,
+    "firms": 6,
+    "calendar": 5
+  },
+  "is_weekend_by_day_of_week": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 1,
+    "5": 1,
+    "6": 0
+  }
+}

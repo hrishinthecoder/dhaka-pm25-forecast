@@ -1,3 +1,5 @@
+> Written before the revision of the manuscript. See the top-level README.md for the current framing and results.
+
 # RESULTS_FACTS — writer hand-off (v2.0-single-station)
 
 > **This is a FACTS-AND-TABLES sheet, NOT a Results section and NOT prose.**

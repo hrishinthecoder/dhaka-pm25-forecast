@@ -1,23 +1,29 @@
-# Dhaka Next-Day PM2.5 Forecasting
+# Dhaka Next-Day PM2.5 Forecasting (main pipeline)
 
-This project forecasts the **next-day (t+1) 24-hour mean PM2.5** at a single Dhaka
-reference-grade station — **OpenAQ sensor 24434 (US Diplomatic Post, ~2 km from
-centre)** — from day-*t* information — ERA5 reanalysis meteorology (via
-Open-Meteo, with the Jan–Jun 2024 boundary-layer-height window pulled from the native
-Copernicus CDS archive), NASA FIRMS fire activity, and calendar proxies — using a
-gradient-boosted tree model (XGBoost). On the held-out test window — the last 12 months
-of available labeled pairs (n=219; sensor 24434 ends 2025-03) — the frozen model scores
-**RMSE 30.8 [25.9, 36.1] µg/m³** and **beats a persistence (same-as-yesterday) baseline
-on the paired ΔRMSE difference** (−5.22 [−9.49, −0.77], Diebold–Mariano p=0.022); the
-advantage concentrates in large errors (ΔRMSE significant, ΔMAE not). A rolling backtest
-shows this edge in 3 of 6 yearly folds (2022, 2024, 2025). Random Forest separates from
-persistence similarly; **LightGBM does not robustly separate from persistence (DM
-p=0.063)**.
+This pipeline forecasts the **next-day (t+1) 24-hour mean PM2.5** at one Dhaka
+reference-grade monitor, **OpenAQ sensor 24434 (location 8415, provider AirNow; US
+diplomatic post, about 2 km from the centre)**, from day-*t* information: PM2.5
+history, ERA5 reanalysis meteorology, NASA FIRMS fire activity and calendar features.
 
-> **Research proof of concept — not an operational advisory.** It uses ERA5
-> *reanalysis* as a day-*t* proxy; an operational next-day system would require a
-> numerical-weather-prediction (NWP) *forecast* for day t+1. Single station; not a
-> substitute for regulatory monitoring.
+On the held-out test window (the last 12 months of available pairs, n = 219; the sensor
+record ends 2025-03) the frozen, pre-selected XGBoost model scores **RMSE 30.8
+[25.9, 36.1] ug/m3**, against 36.0 for persistence (dRMSE -5.22 [-9.49, -0.77],
+Diebold-Mariano p = 0.022; 0.065 after Holm correction across the three tree models).
+
+The revision analyses in `reports/revision/` qualify this result:
+
+- Lasso (30.56), random forest (30.64) and ridge (31.30) are statistically
+  indistinguishable from XGBoost.
+- PM2.5 history plus calendar gives 30.33. Removing ERA5 does not change the error significantly;
+  removing FIRMS lowers it to 29.90.
+- In the four rolling folds that do not overlap the holdout, XGBoost does not beat
+  persistence (pooled p = 0.73); a five-lag linear regression does.
+- All holdout days above 240 ug/m3 are underpredicted, and the model does not beat
+  persistence on AQI category accuracy (0.658 vs 0.671).
+
+> **Hindcast benchmark, not an operational advisory.** ERA5 is released about five days
+> late, the lag-0 FIRMS features extend about six hours past the end of day *t*, and the
+> monitor's public record ended on 24 March 2025. Single monitor; no citywide claim.
 
 ## Quickstart
 
@@ -59,8 +65,9 @@ A point-and-click demo (read-only over the frozen model): `streamlit run app/str
 | `data/` | `raw/` caches, `interim/` (incl. the CDS BLH NetCDF), `processed/` master, `reference/` validation file. |
 | `models/` | `final/` frozen artifacts + `SHA256SUMS`; other model files are gitignored. |
 | `reports/` | Metrics, significance, backtest, seasonal, SHAP, figures, model cards. |
+| `reports/revision/` | Revision analyses: benchmarks, ablation, fold dates, extremes, group SHAP, pooling audit, feature timing, figures (see its README). |
 | `docs/` | `MASTER_DOCUMENTATION.md` (full guide: methods, results, model card, reproducibility). |
-| `tests/` | `test_against_reference.py`, `test_predict.py` (7 tests). |
+| `tests/` | `test_against_reference.py`, `test_predict.py` (7 tests; 4 are skipped when the reference file is absent). |
 | `logs/` | Run logs. |
 
 ## Data licensing
@@ -75,4 +82,4 @@ Comply with each source's licence when redistributing data or derived products.
 - Demo app notes: [app/README.md](app/README.md)
 - Frozen-artifact checksums: [models/final/SHA256SUMS](models/final/SHA256SUMS)
 
-Status: **Model frozen (v2.0, single-station sensor 24434). Manuscript in preparation.**
+Status: **Model frozen (v2.0, single-station sensor 24434). Manuscript in revision; frozen artifacts unchanged.**

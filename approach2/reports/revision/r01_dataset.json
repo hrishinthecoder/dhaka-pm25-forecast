@@ -1,0 +1,91 @@
+{
+  "first_obs_utc": "2016-11-09 17:00:00+00:00",
+  "last_obs_utc": "2025-03-24 12:00:00+00:00",
+  "first_obs_local": "2016-11-09 23:00:00+06:00",
+  "last_obs_local": "2025-03-24 18:00:00+06:00",
+  "hours_in_span": 73364,
+  "hours_observed": 47656,
+  "pct_missing_hours": 35.04,
+  "calendar_days": 3058,
+  "days_with_any_obs": 2220,
+  "valid_days_ge18h": 1899,
+  "pairs_both_valid": 1746,
+  "pairs_complete_45": 1560,
+  "n_train": 1341,
+  "n_holdout": 219,
+  "train_first": "2016-11-16",
+  "train_last": "2024-03-22",
+  "holdout_first": "2024-03-23",
+  "holdout_last": "2025-03-23",
+  "min": 0.0,
+  "max": 985.0,
+  "n_negative_hours": 0,
+  "n_zero_hours": 12,
+  "dropped_pairs": 186,
+  "dropped_by_feature_top": {
+    "pm25_roll_std7": 159,
+    "pm25_roll_mean7": 159,
+    "pm25_lag7": 96,
+    "pm25_lag3": 55,
+    "pm25_roll_std3": 41,
+    "pm25_roll_mean3": 41,
+    "pm25_lag2": 38,
+    "pm25_lag1": 11
+  },
+  "dropped_only_pm_history": 186,
+  "holdout_rows_by_season_day_t": {
+    "monsoon": 81,
+    "transition": 86,
+    "winter_dry": 52
+  },
+  "train_rows_by_season_day_t": {
+    "monsoon": 565,
+    "transition": 459,
+    "winter_dry": 317
+  },
+  "longest_gaps_days": {
+    "2024-09-07": 116,
+    "2022-09-16": 106,
+    "2019-09-22": 100,
+    "2020-09-25": 97,
+    "2021-10-06": 86,
+    "2017-10-13": 80
+  },
+  "value_counts_top": {
+    "27.0": 655,
+    "38.0": 627,
+    "28.0": 569,
+    "31.0": 546,
+    "29.0": 532
+  },
+  "hours_ge_900": 43,
+  "hours_eq_985": 41,
+  "distinct_values_ge_900": [
+    910.0,
+    940.0,
+    985.0
+  ],
+  "next_highest_below_900": 888.0,
+  "days_with_985": 27,
+  "valid_days_with_985": 20,
+  "invalid_days_with_985": 7,
+  "valid985_hours_per_day_minmax": [
+    1,
+    3
+  ],
+  "valid985_days_as_day_t_rows": 20,
+  "valid985_days_as_target_rows": 20,
+  "valid985_days_all_in_train": true,
+  "valid985_months": [
+    "2018-07",
+    "2018-08",
+    "2019-01",
+    "2019-02",
+    "2022-08",
+    "2022-09"
+  ],
+  "rows_with_985day_in_history_window_t_to_t-7": 63,
+  "rows_with_985day_as_target": 20,
+  "rows_touched_any": 69,
+  "rows_touched_in_holdout": 0
+}

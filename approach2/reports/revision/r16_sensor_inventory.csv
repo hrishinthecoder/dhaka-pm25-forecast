@@ -1,0 +1,25 @@
+location_id,location_name,km_from_centre,sensor_id,parameter,isMonitor,isMobile,provider,owner,instrument,pm25_hours,first_hour_utc,last_hour_utc,mean_pm25
+22,SPARTAN - Dhaka University,9.3,41,pm25,True,False,Spartan,Unknown Governmental Organization,Government Monitor,0,,,
+2445,US Diplomatic Post: Dhaka,1.8,4680,pm25,True,False,StateAir Dhaka,Unknown Governmental Organization,Government Monitor,5518,2016-03-10 21:00:00+00:00,2016-11-09 15:00:00+00:00,47.9
+8415,Dhaka,2.0,7464180,o3,True,False,AirNow,Unknown Governmental Organization,Government Monitor,0,,,
+8415,Dhaka,2.0,24434,pm25,True,False,AirNow,Unknown Governmental Organization,Government Monitor,47656,2016-11-09 17:00:00+00:00,2025-03-24 12:00:00+00:00,91.7
+1285342,SPARTAN - Dhaka University,9.2,6566258,pm25,True,False,SPARTAN Network,Unknown Governmental Organization,Government Monitor,0,,,
+3194367,"Dept. of Public Health and Informatics, Jahangirnagar University",17.3,11106524,pm10,False,False,AirGradient,Unknown Person,Unknown AirGradient Sensor,0,,,
+3194367,"Dept. of Public Health and Informatics, Jahangirnagar University",17.3,11106529,pm25,False,False,AirGradient,Unknown Person,Unknown AirGradient Sensor,8277,2024-10-28 07:00:00+00:00,2026-05-21 09:00:00+00:00,123.6
+5105944,smart air bangladesh office,3.5,13623705,pm25,False,False,AirGradient,AirGradient,Unknown AirGradient Sensor,94,2025-07-17 08:00:00+00:00,2025-10-22 04:00:00+00:00,9.1
+6157905,"RAJUK Uttara Apartment Project, Sector - 18, Uttara",7.6,14839069,pm25,False,False,AirGradient,AirGradient,AirGradient Open Air Generation 1 (O-1PST),4044,2025-12-09 10:00:00+00:00,2026-05-27 11:00:00+00:00,132.1
+6219691,"Abdullahbag, North Badda",3.0,15296733,pm25,False,False,AirGradient,AirGradient,Unknown AirGradient Sensor,6,2026-01-29 06:00:00+00:00,2026-01-29 11:00:00+00:00,37.0
+6219798,"Kalijung,Gazipur ",16.3,15297527,pm25,False,False,AirGradient,AirGradient,Unknown AirGradient Sensor,13,2026-01-29 08:00:00+00:00,2026-02-05 04:00:00+00:00,125.3
+6234078,Kaliganj; Gazipur | Smart Air Bangladesh,16.3,15401493,pm25,False,False,AirGradient,Smart Air Bangladesh,Unknown AirGradient Sensor,2541,2026-02-09 04:00:00+00:00,2026-05-27 11:00:00+00:00,101.8
+6234363,Gulshan Society Lake Park; Dhaka | Smart Air Bangladesh,1.0,15403598,pm25,False,False,AirGradient,Smart Air Bangladesh,Unknown AirGradient Sensor,2428,2026-02-09 10:00:00+00:00,2026-05-27 11:00:00+00:00,94.3
+6236590,Hazaribagh; Jigatola; Dhaka | Smart Air Bangladesh,8.7,15420149,pm25,False,False,AirGradient,Smart Air Bangladesh,Unknown AirGradient Sensor,2495,2026-02-11 12:00:00+00:00,2026-05-27 11:00:00+00:00,89.4
+6240023,Dhanmondi; Road No. 7; Dhaka l Smart Air Bangladesh,7.8,15445821,pm25,False,False,AirGradient,Smart Air Bangladesh,Unknown AirGradient Sensor,2273,2026-02-14 16:00:00+00:00,2026-05-27 11:00:00+00:00,83.6
+6240773,Badda; Abdullahbag; Dhaka l Smart Air Bangladesh,3.1,15451666,pm25,False,False,AirGradient,Smart Air Bangladesh,Unknown AirGradient Sensor,2277,2026-02-15 09:00:00+00:00,2026-05-27 11:00:00+00:00,112.7
+6242079,Moghbazar; Bhodro Goli; Dhaka | Smart Air Bangladesh,6.6,15461146,pm25,False,False,AirGradient,Smart Air Bangladesh,Unknown AirGradient Sensor,2362,2026-02-16 10:00:00+00:00,2026-05-27 11:00:00+00:00,85.4
+6242232,Baridhara; Park Road; Dhaka l Smart Air Bangladesh,1.4,15462183,pm25,False,False,AirGradient,Smart Air Bangladesh,Unknown AirGradient Sensor,2149,2026-02-16 15:00:00+00:00,2026-05-27 11:00:00+00:00,87.8
+6251395,Mirpur; Shewrapara; Dhaka | Smart Air Bangladesh,4.7,15530269,pm25,False,False,AirGradient,AirGradient,Unknown AirGradient Sensor,578,2026-02-24 17:00:00+00:00,2026-05-25 16:00:00+00:00,100.6
+6271076,Baridhara Lakeside,0.6,15677432,pm25,False,False,AirGradient,AirGradient,Unknown AirGradient Sensor,1559,2026-03-14 03:00:00+00:00,2026-05-27 11:00:00+00:00,63.5
+6313504,Sensor No -01,3.5,15995177,pm25,False,False,AirGradient,AirGradient,Unknown AirGradient Sensor,5,2026-04-19 10:00:00+00:00,2026-04-26 09:00:00+00:00,12.7
+6314693,Monitor no -5,3.2,16004260,pm25,False,False,AirGradient,AirGradient,Unknown AirGradient Sensor,10,2026-04-20 08:00:00+00:00,2026-04-26 08:00:00+00:00,32.9
+6322838,Sensor No -03,3.1,16063808,pm25,False,False,AirGradient,AirGradient,Unknown AirGradient Sensor,4,2026-04-26 06:00:00+00:00,2026-04-26 09:00:00+00:00,8.2
+6322839,Sensor No -04,3.2,16063813,pm25,False,False,AirGradient,AirGradient,Unknown AirGradient Sensor,3,2026-04-26 06:00:00+00:00,2026-04-26 08:00:00+00:00,20.5
