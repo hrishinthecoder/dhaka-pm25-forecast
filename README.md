@@ -31,7 +31,7 @@ Ground truth: OpenAQ sensor 24434 (location 8415, provider AirNow), the referenc
 
 ## Why a single monitor
 
-A query for PM2.5 within 25 km of the city centre returns 22 OpenAQ locations and 20 PM2.5 sensors with data. Two are reference monitors; 18 are low-cost sensors whose data begin on or after 28 October 2024. A pooled hourly mean is therefore the two reference monitors alone through 2023 (100% of hours), 81.2% in 2024, 31.3% in 2025 and 0% in 2026. The target and all its lags use sensor 24434 only. Details: `approach2/reports/revision/r16_pooling_from_raw.json`.
+A query for PM2.5 within 25 km of the city centre returns 22 OpenAQ locations and 20 PM2.5 sensors with data. Two are reference monitors; 18 are low-cost sensors whose data begin on or after 28 October 2024. Sensor 4680 contributes only in 2016, and sensor 24434 is the only sensor in the pooled hourly mean from 2017 to 2023 (100% of hours); its share falls to 81.2% in 2024, 31.3% in 2025 and 0% in 2026. The target and all its lags use sensor 24434 only. Details: `approach2/reports/revision/r16_pooling_from_raw.json`.
 
 ## What is in the repository
 

@@ -1,0 +1,19 @@
+{
+  "monitor": {
+    "sensor_id": 24434,
+    "location_id": 8415,
+    "location_name": "Dhaka",
+    "lat": 23.796374,
+    "lon": 90.424614
+  },
+  "jahangirnagar": {
+    "sensor_id": 11106529,
+    "location_id": 3194367,
+    "location_name": "Dept. of Public Health and Informatics, Jahangirnagar University",
+    "lat": 23.888280501941725,
+    "lon": 90.26536993068466
+  },
+  "km_monitor_to_jahangirnagar": 19.15,
+  "km_centre_to_jahangirnagar": 17.29,
+  "km_centre_to_monitor": 1.98
+}

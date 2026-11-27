@@ -24,6 +24,7 @@ frozen refit).
 | `r14_extra_checks.py` | `r14_extra_checks.json`, `r14_longest_gap_by_year.csv` | Yearly data gap, macro-F1 over classes present, PM2.5-ERA5 correlations |
 | `r15_number_trace.py` | `r15_number_trace_output.txt` | Screens every number in a .docx against the output files |
 | `r16_pooling_from_raw.py` | `r16_pooling_from_raw.json`, `r16_sensor_inventory.csv`, `r16_pooled_share_by_year.csv`, `r16_overlap_with_24434.csv` | Station composition from the raw per-sensor OpenAQ files (the numbers used in the paper). Needs the raw download, which is not redistributed |
+| `r17_monitor_distance.py` | `r17_monitor_distance.json` | Distance from sensor 24434 to the Jahangirnagar sensor (19.15 km), from the OpenAQ coordinates. Needs the raw download |
 
 Random forest and LightGBM numbers re-run here differ slightly from `reports/metrics.csv`
 (30.66 vs 30.64 and 31.69 vs 31.52) because `requirements.txt` does not pin scikit-learn or
